@@ -1,3 +1,4 @@
+"""京东扫码登录"""
 import json
 import re
 import requests
@@ -44,12 +45,12 @@ async def _(bot: Bot, event: Union[PrivateMessageEvent, GroupMessageEvent]):
 
                 await token_get(qid, event.time)
             else:
-                await jd.send(f'不要请求太快，你的CD还有{cdTime-cd}秒', at_sender=True)
+                await jd_cmd.send(f'不要请求太快，你的CD还有{cdTime-cd}秒', at_sender=True)
         else:
             return
     except Exception as e:
         print(e)
-        await jd.send('正在等待其他人扫码，请稍后再试', at_sender=True)
+        await jd_cmd.send('正在等待其他人扫码，请稍后再试', at_sender=True)
 
 
 async def save_qrcode(pic_url: str) -> str:
@@ -104,7 +105,7 @@ async def token_get(qid, nowetime):
     pic_url = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&{0}'.format(result)
     #print(pic_url)
     qrcode_report = await save_qrcode(pic_url)
-    await jd.send(f"\n请在1分钟之内完成扫码！\n" + Message(qrcode_report), at_sender=True)
+    await jd_cmd.send(f"\n请在1分钟之内完成扫码！\n" + Message(qrcode_report), at_sender=True)
     writeJson(qid, nowetime, '', data)
     await check_token(qid, s, token, okl_token)
 
@@ -130,7 +131,7 @@ async def check_token(qid, s, token, okl_token):
     global i
     while code == 0:
         print("扫码成功")
-        await jd.send('扫码成功！',at_sender=True)
+        await jd_cmd.send('扫码成功！',at_sender=True)
         jd_ck = s.cookies.get_dict()
         pt_key = 'pt_key=' + jd_ck['pt_key']
         pt_pin = 'pt_pin=' + jd_ck['pt_pin']
@@ -146,11 +147,11 @@ async def check_token(qid, s, token, okl_token):
             print("第" + str(i) + "次等待扫码结果:" + message)
             time.sleep(2)
             #if  i % 8 == 0:
-                #await jd.send('等待用户' +qid + "扫码结果", at_sender=True )
+                #await jd_cmd.send('等待用户' +qid + "扫码结果", at_sender=True )
             await check_token(qid, s, token, okl_token)
         else:
             i = 0
-            await jd.send('用户' + qid + "未扫码！结束此次", at_sender=True )
+            await jd_cmd.send('用户' + qid + "未扫码！结束此次", at_sender=True )
             #break
             #exit(0)
 
