@@ -18,7 +18,6 @@ from .config import plugin_config
 requests.packages.urllib3.disable_warnings()
 
 jd = on_command('京东', aliases={'京豆', '扫码', '京东扫码'})
-withdraw = on_command('撤回')
 
 i=0
 #s = requests.session()
@@ -32,18 +31,18 @@ async def _(bot: Bot, event: Union[PrivateMessageEvent, GroupMessageEvent]):
     try:
         cd = event.time - data[qid][0]
     except:
-        cd = cdTime + 1
+        cd = plugin_config.cdTime + 1
     print(cd)
     try:
         
-        if (event.group_id == group_id):
+        if (event.group_id == plugin_config.group_id):
             print(event.group_id)
             #writeJson(qid, event.time, '', data)
-            if cd > cdTime :#or event.get_user_id() in nonebot.get_driver().config.superusers:
+            if cd > plugin_config.cdTime :#or event.get_user_id() in nonebot.get_driver().config.superusers:
 
                 await token_get(qid, event.time)
             else:
-                await jd.send(f'不要请求太快，你的CD还有{cdTime-cd}秒', at_sender=True)
+                await jd.send(f'不要请求太快，你的CD还有{plugin_config.cdTime-cd}秒', at_sender=True)
         else:
             return
     except Exception as e:
