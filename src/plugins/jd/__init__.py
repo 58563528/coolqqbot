@@ -5,7 +5,7 @@ import requests
 import base64
 import time
 import nonebot
-from nonebot import on_command
+from nonebot import logger,on_command
 from nonebot.adapters.cqhttp import Bot
 from nonebot.adapters.cqhttp.event import Message, MessageEvent, GroupMessageEvent, PrivateMessageEvent
 from urllib.parse import urlencode, quote_plus
@@ -36,11 +36,11 @@ async def _(bot: Bot, event: Union[PrivateMessageEvent, GroupMessageEvent]):
         cd = event.time - data[qid][0]
     except:
         cd = cdTime + 1
-    print(cd)
+    logger.info(cd)
     try:
         
         if (event.group_id == QQ_group_id):
-            print(event.group_id)
+            logger.info(event.group_id)
             #writeJson(qid, event.time, '', data)
             if cd > cdTime :#or event.get_user_id() in nonebot.get_driver().config.superusers:
 
@@ -50,7 +50,7 @@ async def _(bot: Bot, event: Union[PrivateMessageEvent, GroupMessageEvent]):
         else:
             return
     except Exception as e:
-        print(e)
+        logger.info(e)
         await jd_cmd.send('正在等待其他人扫码，请稍后再试', at_sender=True)
 
 
