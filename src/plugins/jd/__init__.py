@@ -17,20 +17,20 @@ from nonebot.rule import to_me
 from .config import plugin_config
 requests.packages.urllib3.disable_warnings()
 
-jd = on_command('jd', aliases={'京豆', '扫码', '京东扫码'})
-jd.__doc__ = """
+jd_cmd = on_command('jd', aliases={'京豆', '扫码', '京东扫码'})
+jd_cmd.__doc__ = """
 /jd
 扫码
 京豆
 """
-cdTime = plugin_config.cdTime
-QQ_group_id = plugin_config.QQ_group_id
+cdTime = plugin_config.cdtime
+QQ_group_id = plugin_config.qq_group_id
 i=0
 #s = requests.session()
 jd_ua = 'jdapp;android;10.0.5;11;{0};network/wifi;model/M2102K1C;osVer/30;appBuild/88681;partner/lc001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; M2102K1C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045534 Mobile Safari/537.36'
 
 
-@jd.handle()
+@jd_cmd.handle()
 async def _(bot: Bot, event: Union[PrivateMessageEvent, GroupMessageEvent]):
     qid = event.get_user_id()
     data = readJson()
