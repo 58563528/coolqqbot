@@ -1,7 +1,3 @@
-
-#!/usr/bin/python
-
-# -*- coding: <encoding name> -*-
 import json
 import re
 import requests
