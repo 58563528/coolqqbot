@@ -16,7 +16,8 @@ requests.packages.urllib3.disable_warnings()
 
 jd_cmd = on_command('jd', aliases={'京豆', '扫码', '京东扫码'})
 jd_cmd.__doc__ = """
-/jd
+jd 京豆
+
 扫码
 京豆
 """
