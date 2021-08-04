@@ -160,7 +160,7 @@ async def check_token(qid, s, token, okl_token):
 
 
 def readJson():
-    with open(r'./jd/plugins/jd/userscd.json', 'r') as f_in:
+    with open(r'./src/plugins/jd/userscd.json', 'r') as f_in:
         data = json.load(f_in)
         f_in.close()
         return data
@@ -168,6 +168,6 @@ def readJson():
 
 def writeJson(qid: str, time: int, ck: str, data: dict):
     data[qid] = [time, ck]
-    with open(r'./jd/plugins/jd/userscd.json', 'w') as f_out:
+    with open(r'./src/plugins/jd/userscd.json', 'w') as f_out:
         json.dump(data, f_out)
         f_out.close()
