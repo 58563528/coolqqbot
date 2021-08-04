@@ -17,8 +17,14 @@ from nonebot.rule import to_me
 from .config import plugin_config
 requests.packages.urllib3.disable_warnings()
 
-jd = on_command('京东', aliases={'京豆', '扫码', '京东扫码'})
-
+jd = on_command('jd', aliases={'京豆', '扫码', '京东扫码'})
+jd.__doc__ = """
+/jd
+扫码
+京豆
+"""
+cdTime = plugin_config.cdTime
+QQ_group_id = plugin_config.QQ_group_id
 i=0
 #s = requests.session()
 jd_ua = 'jdapp;android;10.0.5;11;{0};network/wifi;model/M2102K1C;osVer/30;appBuild/88681;partner/lc001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; M2102K1C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045534 Mobile Safari/537.36'
@@ -31,18 +37,18 @@ async def _(bot: Bot, event: Union[PrivateMessageEvent, GroupMessageEvent]):
     try:
         cd = event.time - data[qid][0]
     except:
-        cd = plugin_config.cdTime + 1
+        cd = cdTime + 1
     print(cd)
     try:
         
-        if (event.group_id == plugin_config.group_id):
+        if (event.group_id == QQ_group_id):
             print(event.group_id)
             #writeJson(qid, event.time, '', data)
-            if cd > plugin_config.cdTime :#or event.get_user_id() in nonebot.get_driver().config.superusers:
+            if cd > cdTime :#or event.get_user_id() in nonebot.get_driver().config.superusers:
 
                 await token_get(qid, event.time)
             else:
-                await jd.send(f'不要请求太快，你的CD还有{plugin_config.cdTime-cd}秒', at_sender=True)
+                await jd.send(f'不要请求太快，你的CD还有{cdTime-cd}秒', at_sender=True)
         else:
             return
     except Exception as e:
@@ -156,7 +162,7 @@ async def check_token(qid, s, token, okl_token):
 
 
 def readJson():
-    with open(r'./src/plugins/jd/userscd.json', 'r') as f_in:
+    with open(r'./jd/plugins/jd/userscd.json', 'r') as f_in:
         data = json.load(f_in)
         f_in.close()
         return data
@@ -164,6 +170,6 @@ def readJson():
 
 def writeJson(qid: str, time: int, ck: str, data: dict):
     data[qid] = [time, ck]
-    with open(r'./src/plugins/jd/userscd.json', 'w') as f_out:
+    with open(r'./jd/plugins/jd/userscd.json', 'w') as f_out:
         json.dump(data, f_out)
         f_out.close()

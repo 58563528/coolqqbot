@@ -8,7 +8,7 @@ DATA = PluginData('jd', config=True)
 
 class Config(BaseSettings):
     cdTime: int = int(DATA.get_config('jd', 'cdTime', fallback='60'))
-    group_id: int = int(DATA.get_config('jd', 'group_id', fallback='30'))
+    QQ_group_id: int = int(DATA.get_config('jd', 'QQ_group_id', fallback='30'))
     class Config:
         extra = 'ignore'
 
