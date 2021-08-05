@@ -157,7 +157,19 @@ async def check_token(qid, s, token, okl_token):
             #exit(0)
 
 
-
+async def write_cookie(qid,ck):
+    
+    t = round(time.time() * 1000)
+    headers = {
+        'Authorization': 'Bearer eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiI1ODU2MzUyOFFRIiwiaWF0IjoxNjI3ODg0NDEwLCJleHAiOjE2Mjg0ODkyMTB9.og7ICSumJttBWhpmdH7tmVXVIktSvyToh9G0YcRHtfHQ1x9duAK4PpeRQ48hTrKp',
+    }
+    url = 'https://192.168.20.100:55700/api/cookies?t={0}'.format(t)
+    data = {
+        'value': ck,
+        }
+    res = s.post(url=url, headers=headers, data=data, verify=False)
+    await jd_cmd.send(Message(res), at_sender=True)
+    
 
 def readJson():
     with open(r'./src/plugins/jd/userscd.json', 'r') as f_in:
