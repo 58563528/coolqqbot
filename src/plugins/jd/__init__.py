@@ -107,7 +107,7 @@ async def token_get(qid, nowetime):
     #print(pic_url)
     qrcode_report = await save_qrcode(pic_url)
     await jd_cmd.send(f"\n请在1分钟之内完成扫码！\n" + Message(qrcode_report), at_sender=True)
-    writeJson(qid, nowetime, '', data)
+    #writeJson(qid, nowetime, '', data)
     await check_token(qid, s, token, okl_token)
 
 
@@ -139,7 +139,7 @@ async def check_token(qid, s, token, okl_token):
         ck = str(pt_key) + ';' + str(pt_pin) + ';'
         s.close()
         data = readJson()
-        writeJson(qid, int(time.time()), ck, data)
+        #writeJson(qid, int(time.time()), ck, data)
         print(ck)
         break
     else:
