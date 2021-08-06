@@ -36,11 +36,11 @@ async def _(bot: Bot, event: Union[PrivateMessageEvent, GroupMessageEvent]):
         cd = event.time - data[qid][0]
     except:
         cd = cdTime + 1
-    print.info(cd)
+    print(cd)
     try:
         
         if (event.group_id == QQ_group_id):
-            print.info(event.group_id)
+            print(event.group_id)
             #writeJson(qid, event.time, '', data)
             if cd > cdTime :#or event.get_user_id() in nonebot.get_driver().config.superusers:
 
@@ -50,7 +50,7 @@ async def _(bot: Bot, event: Union[PrivateMessageEvent, GroupMessageEvent]):
         else:
             return
     except Exception as e:
-        print.info(e)
+        print(e)
         await jd_cmd.send('正在等待其他人扫码，请稍后再试', at_sender=True)
 
 
