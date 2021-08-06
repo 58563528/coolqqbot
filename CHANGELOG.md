@@ -4,16 +4,17 @@
 
 ## [Unreleased]
 
-## [0.14.1] - 2021-04-28
-
 ### Added
 
-- fflogs 的 boss 数据可以从本地或者仓库获取
+- 给数据插件管理添加管理网络文件的方法
 
 ### Changed
 
-- 更新至 NoneBot2 2.0.0a13
-- 最终幻想XIV使用新闻发布日期作为推送判定标准
+- 调整插件数据管理的配置访问方式
+
+### Fixed
+
+- 修复音乐插件内容格式问题
 
 ## [0.14.0] - 2020-11-30
 
@@ -362,8 +363,7 @@
 
 - 正常工作的版本。
 
-[Unreleased]: https://github.com/he0119/CoolQBot/compare/v0.14.1...HEAD
-[0.14.1]: https://github.com/he0119/CoolQBot/compare/v0.14.0...v0.14.1
+[Unreleased]: https://github.com/he0119/CoolQBot/compare/v0.14.0...HEAD
 [0.14.0]: https://github.com/he0119/CoolQBot/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/he0119/CoolQBot/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/he0119/CoolQBot/compare/v0.12.2...v0.13.0
