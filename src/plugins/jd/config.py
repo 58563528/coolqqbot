@@ -3,7 +3,7 @@ from pydantic import BaseSettings
 
 from src.utils.plugin import PluginData
 
-DATA = PluginData('jd', config=True)
+DATA = PluginData('jd')
 
 
 class Config(BaseSettings):
