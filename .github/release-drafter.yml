@@ -4,10 +4,8 @@ categories:
   - title: 'Added'
     labels:
       - 'enhancement'
-      - 'feature'
   - title: 'Changed'
     labels:
-      - 'improve'
       - 'change'
   - title: 'Deprecated'
     labels:
@@ -18,7 +16,6 @@ categories:
   - title: 'Fixed'
     labels:
       - 'bug'
-      - 'fix'
   - title: 'Security'
     labels:
       - 'security'

@@ -59,7 +59,7 @@ jobs:
           envs: TAG_NAME
           script: |
             cd coolqbot/dev
-            sed -i "s#58563528/coolqbot:.*#58563528/coolqbot:dev#g" docker-compose.yml
+            sed -i "s#${{ github.event.release.tag_name }}/coolqbot:.*#${{ github.event.release.tag_name }}/coolqbot:dev#g" docker-compose.yml
             sudo docker-compose pull
             sudo docker-compose up -d
 
@@ -82,6 +82,6 @@ jobs:
           envs: TAG_NAME
           script: |
             cd coolqbot/prod
-            sed -i "s#58563528/coolqbot:.*#58563528/coolqbot:$TAG_NAME#g" docker-compose.yml
+            sed -i "s#${{ github.event.release.tag_name }}8/coolqbot:.*#${{ github.event.release.tag_name }}/coolqbot:$TAG_NAME#g" docker-compose.yml
             docker-compose pull
             docker-compose up -d
